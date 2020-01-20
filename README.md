@@ -1,2 +1,2 @@
 # Molecular-Dynamics
-Molecular dynamics using Lennard Jones potential
+Molecular dynamics NVE using Lennard Jones potential
