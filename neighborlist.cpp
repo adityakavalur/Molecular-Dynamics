@@ -18,7 +18,7 @@ using namespace std;
 int main ()
 {
 
-bool force_check = false; //turn this boolean true when only checking for numerical differentiation of force against analytical values
+bool force_check = true; //turn this boolean true when only checking for numerical differentiation of force against analytical values
 
 int t;//number of time-steps
 double dt; //value of each time-step
@@ -53,7 +53,7 @@ bin = new bin_type;
 
 ifstream File;
     File.open(initial_file);
-        if (File==NULL)
+        if (! File)
         {
         cout << "Check input file name simulation time file"; abort();
         }
