@@ -12,5 +12,9 @@ $(TARGET): $(OBJ)
 
 all: $(LIBS) $(TARGET)
 
-clean:
+test: $(LIBS) $(TARGET)
+	export NUMERICAL_CHECK=true
+	$$test;
+
+clean: 
 	rm $(OBJ) $(TARGET)

@@ -34,8 +34,8 @@ for (long i=0; i<fromfile->N;i++)
         tempr[i][j]=fromfile->r[i][j];
         }
     }
-    ofstream myfile ;
-    myfile.open ("force_comparison.txt", std::ios_base::app);
+ofstream myfile ;
+myfile.open ("force_comparison.txt", std::ios_base::app);
 for (long i=0; i<fromfile->N;i++)
     {
     for(int j=0; j<Dim; j++)
@@ -54,7 +54,6 @@ for (long i=0; i<fromfile->N;i++)
         potential_calc(neighlist,fromfile, run_parameters);//calculating the force fields for x using this for analytical values
 
         }
-    myfile.open ("force_comparison.txt", std::ios_base::app);
     myfile <<i<<" " <<setprecision(15)<< run_parameters->force[i][0] << " " << tempf[i][0] << " " << run_parameters->force[i][1] << " " <<tempf[i][1] << " " << run_parameters->force[i][2] << " " <<tempf[i][2] << endl;
 
     }
