@@ -33,7 +33,7 @@ if (check == 1)
     //initial file with parameter inputs
     ifstream File;
     File.open(initial_file);
-        if (File==NULL)
+        if (! File)
         {
         cout << "Check input file name run parameters file"; abort();
         }
@@ -52,7 +52,7 @@ if (check == 1)
     //configuration file from disk
     File.open(configfile);
 
-    if (File==NULL)
+    if (! File)
         {
         cout << "Check configuration file name"; abort();
         }
@@ -103,7 +103,7 @@ if (check == 1)
 
     //initial file with run inputs
     File.open(initial_file);
-        if (File==NULL)
+        if (! File)
         {
         cout << "Check input file name"; abort();
         }

@@ -4,6 +4,9 @@
 #include <iostream>
 #include <string>
 #include <iomanip>
+#include <cstdlib>
+#include <stdlib.h>
+#include <string.h>
 #include "loadconfig.h"
 #include "initializenl.h"
 #include "neighcalculation.h"
@@ -19,6 +22,9 @@ int main ()
 {
 
 bool force_check = false; //turn this boolean true when only checking for numerical differentiation of force against analytical values
+char* env_force_check = std::getenv ("NUMERICAL_CHECK");
+char stringtrue[] = "true";
+if (strcmp(env_force_check,stringtrue) == 0) { force_check = true;} 
 
 int t;//number of time-steps
 double dt; //value of each time-step
@@ -53,7 +59,7 @@ bin = new bin_type;
 
 ifstream File;
     File.open(initial_file);
-        if (File==NULL)
+        if (! File)
         {
         cout << "Check input file name simulation time file"; abort();
         }
@@ -90,7 +96,7 @@ myfile.close();
 
 
 //if only forces of numerical and analytical values are to be checked and the program exited
-if (force_check==true){force_numerical(neighlist, fromfile, run_parameters);}
+if (force_check == true){force_numerical(neighlist, fromfile, run_parameters);}
 
 
 
@@ -106,7 +112,7 @@ for (long i=0; i<fromfile->N; i++)
 
 myfile.open ("energy.txt", std::ios_base::app);
 myfile << 0 << " " << run_parameters->KinEnergy << " " << run_parameters->PotEnergy << " " << run_parameters->KinEnergy+run_parameters->PotEnergy  << endl;
-
+myfile.close();
 
 
 for (int i=1; i<=t;i++)
@@ -118,10 +124,10 @@ for (int i=1; i<=t;i++)
         ofstream myfile ;
         myfile.open ("energy.txt", std::ios_base::app);
         myfile << i*dt << " " << run_parameters->KinEnergy << " " << run_parameters->PotEnergy << " " << run_parameters->KinEnergy+run_parameters->PotEnergy  << endl;
+        myfile.close();
         }
 
     }
-myfile.close();
 
 
 //writing the output file of the neighborlist at the end of the simulation
